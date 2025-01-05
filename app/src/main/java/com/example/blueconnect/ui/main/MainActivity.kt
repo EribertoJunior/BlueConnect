@@ -81,19 +81,13 @@ class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.S)
     private fun requestBluetoothPermission() {
         when {
-            ContextCompat.checkSelfPermission(
-                this,
-                BLUETOOTH_CONNECT
-            ) == PackageManager.PERMISSION_GRANTED -> {
+            ContextCompat.checkSelfPermission(this, BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED -> {
                 // Permissão já concedida
                 val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                 enableBluetoothLauncher.launch(enableBtIntent)
             }
 
-            ActivityCompat.shouldShowRequestPermissionRationale(
-                this,
-                BLUETOOTH_CONNECT
-            ) -> {
+            ActivityCompat.shouldShowRequestPermissionRationale(this, BLUETOOTH_CONNECT) -> {
                 // Mostrar uma explicação ao usuário e depois solicitar a permissão
                 requestBluetoothPermissionLauncher.launch(BLUETOOTH_CONNECT)
             }
